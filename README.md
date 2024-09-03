@@ -37,6 +37,18 @@ flask db upgrade
 Run the application:
 flask run
 Configuration
+Note: For security reasons, the config.py file is not included in this repository. However, here is the structure of the config.py file that you can use:
+
+import os
+
+# Database configuration
+MYSQL_HOST = os.getenv('MYSQL_HOST', 'localhost')
+MYSQL_USER = os.getenv('MYSQL_USER', 'root')
+MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'your_default_password')
+MYSQL_DB = os.getenv('MYSQL_DB', 'petmatch')
+
+# JWT configuration
+JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', os.urandom(24))
 Before running the application, ensure you set up the following environment variables:
 
 MYSQL_HOST: The MySQL host (default: localhost).
@@ -46,15 +58,4 @@ MYSQL_DB: The MySQL database name (default: petmatch).
 JWT_SECRET_KEY: The secret key for JWT (can be generated using os.urandom(24)).
 You can set these variables in your environment, or place them in a .env file and use python-dotenv to load them.
 
-Project Structure
-petmatch-backend/
-├── app/                  # Flask application package
-│   ├── __init__.py       # Initializes the application and its extensions
-│   ├── routes.py         # Application routes
-│   ├── models.py         # Database models
-│   └── templates/        # HTML templates
-├── venv/                 # Virtual environment (not included in repo)
-├── config.py             # Configuration file (without sensitive data)
-├── requirements.txt      # Dependencies list
-├── run.py                # Run the application
-└── README.md             # Project documentation
+
