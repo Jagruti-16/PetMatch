@@ -41,13 +41,11 @@ Note: For security reasons, the config.py file is not included in this repositor
 
 import os
 
-# Database configuration
 MYSQL_HOST = os.getenv('MYSQL_HOST', 'localhost')
 MYSQL_USER = os.getenv('MYSQL_USER', 'root')
 MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'your_default_password')
 MYSQL_DB = os.getenv('MYSQL_DB', 'petmatch')
 
-# JWT configuration
 JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', os.urandom(24))
 Before running the application, ensure you set up the following environment variables:
 
