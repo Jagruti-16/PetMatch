@@ -17,7 +17,7 @@ This repository contains the backend of the PetMatch application, a platform des
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/petmatch-backend.git
+   git clone https://github.com/your-username/PetMatch.git
    cd petmatch-backend
 Create and activate a virtual environment:
 
