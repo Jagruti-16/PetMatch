@@ -49,7 +49,11 @@ def login():
 
     if user and bcrypt.check_password_hash(user[2], password):
         access_token = create_access_token(identity={'username': username,'user_id': user[0]})
-        return jsonify({'token': access_token}), 200
+        return jsonify({
+            'token': access_token,
+            'user_id': user[0],   # Add user_id to response
+            'username': username  # Add username to response
+        }), 200
     return jsonify({'msg': 'Invalid credentials'}), 401
 
 @app.route('/api/profile', methods=['GET'])
@@ -228,6 +232,22 @@ def adopt_pet():
     cursor.close()
 
     return jsonify({'msg': 'Pet adopted successfully'}), 201
+
+@app.route('/api/profile/update', methods=['PUT'])
+@jwt_required()
+def update_profile():
+    current_user = get_jwt_identity()
+    data = request.get_json()
+
+    cursor = mysql.connection.cursor()
+    cursor.execute("""
+        UPDATE users SET first_name = %s, last_name = %s, age = %s, address = %s, contact_number = %s 
+        WHERE username = %s
+    """, (data['first_name'], data['last_name'], data['age'], data['address'], data['contact_number'], current_user['username']))
+    mysql.connection.commit()
+    cursor.close()
+
+    return jsonify({'msg': 'Profile updated successfully'}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
