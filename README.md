@@ -22,10 +22,8 @@ This repository contains the backend of the PetMatch application, a platform des
 Create and activate a virtual environment:
 
 python3 -m venv venv
-```bash
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 Install dependencies:
-```bash
 pip install -r requirements.txt
 Set up the database:
 
